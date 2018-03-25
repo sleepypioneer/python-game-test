@@ -53,18 +53,17 @@ def drawArena():
 def drawBall(ball):
 	pygame.draw.rect(screen, white, ball)
 
-def moveball(ball, ballDirX, ballDirY)
-int: ball.x += ballDirX
-int: ball.y += ballDirY
+def moveball(ball, ballDirX, ballDirY):
+	ball.x += ballDirX
+	ball.y += ballDirY
 return ball #returns new position
 
 #function chekcs for collision with wall and changes ball direction
-def checkEdgeCollision(ball, balLDirX, BallDirY):
-	if ball.top == (line_thickness) or ball.bottom = (window_height - line_thickness):
-		bakkDirY 9 ballDirY * -1
-		if ball.left == (line_thickness) or ball.
-		right == (window_width- line_thickness:
-			ballDirx = ballDirX * -1
+def checkEdgeCollision(ball, ballDirX, BallDirY):
+	if ball.top == (line_thickness) or ball.bottom == (window_height - line_thickness):
+		ballDirX = ballDirY * -1
+		if ball.left == (line_thickness) or ball.right == (window_width - line_thickness):
+			ballDirX = ballDirY  * -1
 			return ballDirX, ballDirY #return new direction
 
 #Function checks if ball has hit paddle
@@ -77,19 +76,19 @@ def checkHitBall(ball, Paddle1, paddle2, ballDirx):
 		return 1 # return new direciton (left)
 
 #Funtion for AI of computer player
-def artificialIntelligence(ball.ballDirX, paddle2):
+def artificialIntelligence(ball, ballDirX, paddle2):
 	# Ball is moving awa from paddle, bove back to centre
 	if ballDIrX == -1:
-		ifpaddle.Centery > (window_height/2):
-		paddle2.y +=1 
-	elif paddle2.centery > (window_height/2):
-		paddle2.y -=1
-	#Ball moving towards bat, track its movement
+		if paddle2.centery < (window_height/2):
+			paddle2.y +=1 
+		elif paddle2.centery > (window_height/2):
+			paddle2.y -=1
+	# Ball moving towards bat, track its movement
  	elif ballDirX == 1:
- 		if paddle2.centery <ball.centery:
+ 		if paddle2.centery < ball.centery:
  			paddle2.y += 1
  		else:
- 			padde2.y -= 1
+ 			paddle2.y -= 1
  			return paddle2
 
  #intialise the window
